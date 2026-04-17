@@ -1,5 +1,15 @@
 import streamlit as st
 
+# Initialize session state for HSK progress tracking
+if 'hsk_completed' not in st.session_state:
+    st.session_state.hsk_completed = {
+        'hsk1': False,
+        'hsk2': False,
+        'hsk3': False,
+        'hsk4': False,
+        'hsk5': False
+    }
+
 st.title("ಠ_ಠ Mandarin guide to HSK 5 ಠ_ಠ")
 st.subheader("Before you start")
 
@@ -7,13 +17,64 @@ intro_text = "First of all, I'm not a language teacher or a language expert. I'm
 
 st.write(intro_text)
 
+# Progress Overview
+st.subheader("📊 Your Learning Progress")
+
+progress_cols = st.columns(5)
+hsk_levels = ['HSK 1', 'HSK 2', 'HSK 3', 'HSK 4', 'HSK 5']
+hsk_keys = ['hsk1', 'hsk2', 'hsk3', 'hsk4', 'hsk5']
+
+for i, (level, key) in enumerate(zip(hsk_levels, hsk_keys)):
+    with progress_cols[i]:
+        if st.session_state.hsk_completed[key]:
+            st.success(f"✅ {level}")
+        else:
+            st.error(f"🔒 {level}")
+
 # Start Learning Button
-st.subheader("🚀 Ready to Start Learning?")
+st.subheader("🚀 Choose Your HSK Level")
 
-col1, col2, col3 = st.columns([1, 2, 1])
+st.write("Complete levels in order to unlock the next ones:")
 
-with col2:
-    if st.button("🎓 START LEARNING HSK 1", type="primary", use_container_width=True):
+# HSK Level Buttons - All in unified layout
+col1, col2 = st.columns(2)
+
+with col1:
+    # HSK 1 - Always unlocked
+    if st.button("🎓 HSK 1 - Beginner\n(Basic greetings, numbers, simple sentences)", use_container_width=True):
         st.switch_page("pages/1_HSK_1.py")
 
-st.info("💡 **Tip:** Start with HSK 1 if you're a complete beginner, or jump to higher levels if you already know some Mandarin!")
+    # HSK 3 - Locked until HSK 2 is completed
+    hsk3_unlocked = st.session_state.hsk_completed['hsk2']
+    if hsk3_unlocked:
+        if st.button("🎓 HSK 3 - Intermediate\n(Opinions, comparisons, daily communication)", use_container_width=True):
+            st.switch_page("pages/7_HSK_3.py")
+    else:
+        st.button("🔒 HSK 3 - Intermediate\n(Complete HSK 2 first)", disabled=True, use_container_width=True)
+
+    # HSK 5 - Locked until HSK 4 is completed
+    hsk5_unlocked = st.session_state.hsk_completed['hsk4']
+    if hsk5_unlocked:
+        if st.button("🎓 HSK 5 - Advanced Fluency\n(Native-like proficiency, complex topics)", use_container_width=True):
+            st.switch_page("pages/9_HSK_5.py")
+    else:
+        st.button("🔒 HSK 5 - Advanced Fluency\n(Complete HSK 4 first)", disabled=True, use_container_width=True)
+
+with col2:
+    # HSK 2 - Locked until HSK 1 is completed
+    hsk2_unlocked = st.session_state.hsk_completed['hsk1']
+    if hsk2_unlocked:
+        if st.button("🎓 HSK 2 - Elementary\n(Time, food, places, questions)", use_container_width=True):
+            st.switch_page("pages/6_HSK_2.py")
+    else:
+        st.button("🔒 HSK 2 - Elementary\n(Complete HSK 1 first)", disabled=True, use_container_width=True)
+
+    # HSK 4 - Locked until HSK 3 is completed
+    hsk4_unlocked = st.session_state.hsk_completed['hsk3']
+    if hsk4_unlocked:
+        if st.button("🎓 HSK 4 - Upper Intermediate\n(Complex sentences, abstract concepts)", use_container_width=True):
+            st.switch_page("pages/8_HSK_4.py")
+    else:
+        st.button("🔒 HSK 4 - Upper Intermediate\n(Complete HSK 3 first)", disabled=True, use_container_width=True)
+
+st.info("💡 **Level Guide:**\n• **HSK 1-2**: Basic communication\n• **HSK 3-4**: Practical fluency\n• **HSK 5**: Professional/academic level")

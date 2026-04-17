@@ -9,7 +9,7 @@ A Streamlit app to help you learn Mandarin and prepare for HSK 5!
 1. Install the requirements
 
    ```
-   $ pip install -r requirements.txt
+
    ```
 
 2. Run the app

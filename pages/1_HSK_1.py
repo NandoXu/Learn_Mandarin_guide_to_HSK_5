@@ -1,98 +1,42 @@
 import streamlit as st
 
+# Initialize session state for HSK progress tracking
+if 'hsk_completed' not in st.session_state:
+    st.session_state.hsk_completed = {
+        'hsk1': False,
+        'hsk2': False,
+        'hsk3': False,
+        'hsk4': False,
+        'hsk5': False
+    }
+
 st.title("🎓 HSK 1 - Beginner Level")
 st.subheader("Welcome to your Mandarin learning journey!")
 
 st.write("HSK 1 is the foundation level. You'll learn basic greetings, numbers, and simple sentences.")
 
-# Basic Vocabulary
-st.subheader("📝 Basic Vocabulary")
+st.info("Content coming soon...")
 
-basic_vocab = {
-    "Greetings": [
-        "你好 (nǐ hǎo) - Hello",
-        "谢谢 (xiè xiè) - Thank you",
-        "不客气 (bú kè qì) - You're welcome",
-        "再见 (zài jiàn) - Goodbye"
-    ],
-    "Numbers": [
-        "一 (yī) - One",
-        "二 (èr) - Two",
-        "三 (sān) - Three",
-        "四 (sì) - Four",
-        "五 (wǔ) - Five"
-    ],
-    "Family": [
-        "爸爸 (bà ba) - Father",
-        "妈妈 (mā ma) - Mother",
-        "哥哥 (gē ge) - Older brother",
-        "姐姐 (jiě jie) - Older sister"
-    ]
-}
+# Completion Section
+st.subheader("✅ Mark as Completed")
 
-for category, words in basic_vocab.items():
-    with st.expander(f"📖 {category}"):
-        for word in words:
-            st.write(f"• {word}")
+st.write("When you've mastered the basics of HSK 1, mark this level as complete to unlock HSK 2!")
 
-# Basic Grammar
-st.subheader("🔤 Basic Grammar")
+if st.button("🎉 I have completed HSK 1!", type="primary", use_container_width=True):
+    st.session_state.hsk_completed['hsk1'] = True
+    st.success("🎊 Congratulations! HSK 1 completed! HSK 2 is now unlocked.")
+    st.balloons()
 
-st.write("**Subject + Verb + Object**")
-st.info("Example: 我吃苹果 (I eat apple)")
+# Current Status
+if st.session_state.hsk_completed['hsk1']:
+    st.success("✅ HSK 1 Status: **COMPLETED**")
+else:
+    st.info("📚 HSK 1 Status: **IN PROGRESS**")
 
-st.write("**是 (shì) - To be**")
-st.info("Example: 我是学生 (I am a student)")
-
-# Practice Section
-st.subheader("🎯 Practice Time")
-
-st.write("Try these simple exercises:")
-
-# Exercise 1: Greetings
-st.write("**1. Match the English to Chinese:**")
-greetings_quiz = {
-    "Hello": "你好",
-    "Thank you": "谢谢",
-    "Goodbye": "再见"
-}
-
-for english, chinese in greetings_quiz.items():
-    answer = st.text_input(f"What is '{english}' in Chinese?", key=f"greet_{english}")
-    if answer:
-        if answer.strip() == chinese:
-            st.success("✅ Correct!")
-        else:
-            st.error(f"❌ Try again. Hint: {chinese}")
-
-# Exercise 2: Numbers
-st.write("**2. Count from 1-5:**")
-numbers = ["一", "二", "三", "四", "五"]
-user_numbers = []
-for i in range(5):
-    num = st.text_input(f"Number {i+1}:", key=f"num_{i}")
-    user_numbers.append(num)
-
-if st.button("Check Numbers"):
-    correct = 0
-    for i, (user_num, correct_num) in enumerate(zip(user_numbers, numbers)):
-        if user_num.strip() == correct_num:
-            correct += 1
-    st.metric("Score", f"{correct}/5")
-
-# Next Steps
+# Navigation
 st.subheader("🚀 Next Steps")
-
-st.info("""
-Great job starting your Mandarin journey! 🎉
-
-**What's next:**
-- Practice these words daily
-- Try speaking them out loud
-- Move to HSK 2 when you're comfortable
-
-Remember: Consistency is key! Practice a little every day.
-""")
-
-if st.button("🎯 Ready for HSK 2?"):
-    st.success("Coming soon! Keep practicing HSK 1 first.")
+if st.session_state.hsk_completed['hsk1']:
+    if st.button("➡️ Continue to HSK 2", use_container_width=True):
+        st.switch_page("pages/6_HSK_2.py")
+else:
+    st.button("🔒 HSK 2 (Complete HSK 1 first)", disabled=True, use_container_width=True)
