@@ -19,7 +19,8 @@ intro_text = "First of all, I'm not a language teacher or a language expert. I'm
 st.write(intro_text)
 
 # Start Learning Button
-st.subheader("🚀 Choose Your HSK Level")
+st.subheader("🚀 Choose Your Level")
+st.subheader("选择你的等级")
 
 st.write("Complete levels in order to unlock the next ones:")
 
