@@ -1,3 +1,20 @@
+
+import streamlit as st
+
+# Initialize session state for HSK progress tracking
+# if 'hsk_completed' not in st.session_state:
+#     st.session_state.hsk_completed = {
+#         'hsk1': False,
+#         'hsk2': False,
+#         'hsk3': False,
+#         'hsk4': False,
+#         'hsk5': False
+#     }
+
+st.title("🎓 HSK 4 - Upper Intermediate")
+st.subheader("Mastering complex expressions!")
+
+// ... rest of the file ...
 import streamlit as st
 
 # Initialize session state for HSK progress tracking
