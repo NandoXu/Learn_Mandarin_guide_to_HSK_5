@@ -27,12 +27,6 @@ if st.button("🎉 I have completed HSK 3!", type="primary", use_container_width
     st.success("🎊 Congratulations! HSK 3 completed! HSK 4 is now unlocked.")
     st.balloons()
 
-# Current Status
-if st.session_state.hsk_completed['hsk3']:
-    st.success("✅ HSK 3 Status: **COMPLETED**")
-else:
-    st.info("📚 HSK 3 Status: **IN PROGRESS**")
-
 # Navigation
 st.subheader("🚀 Next Steps")
 col1, col2 = st.columns(2)

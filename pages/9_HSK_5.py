@@ -27,12 +27,6 @@ if st.button("🎉 I have completed HSK 5!", type="primary", use_container_width
     st.success("🏆 INCREDIBLE! You have mastered HSK 5! You are now fluent in Mandarin Chinese!")
     st.balloons()
 
-# Current Status
-if st.session_state.hsk_completed['hsk5']:
-    st.success("✅ HSK 5 Status: **COMPLETED** - You are a Mandarin master!")
-else:
-    st.info("📚 HSK 5 Status: **IN PROGRESS**")
-
 # Navigation
 st.subheader("🚀 Congratulations!")
 col1, col2 = st.columns(2)
@@ -43,17 +37,4 @@ with col1:
 
 with col2:
     if st.button("🏠 Back to Home", use_container_width=True):
-        st.switch_page("streamlit_app.py")
-
-# Achievement Celebration
-if st.session_state.hsk_completed['hsk5']:
-    st.subheader("🎖️ Achievement Unlocked!")
-    st.write("**🏆 HSK 5 MASTER**")
-    st.write("You can now:")
-    st.write("• ✅ Understand TV shows and movies in Mandarin")
-    st.write("• ✅ Read Chinese newspapers and books")
-    st.write("• ✅ Write formal documents and essays")
-    st.write("• ✅ Engage in sophisticated conversations")
-    st.write("• ✅ Communicate fluently in academic/professional settings")
-
-    st.success("🎊 You have achieved the highest level of Mandarin proficiency! 恭喜! (Congratulations!)")
+        st.switch_page("mando_guidance.py")

@@ -17,20 +17,6 @@ intro_text = "First of all, I'm not a language teacher or a language expert. I'm
 
 st.write(intro_text)
 
-# Progress Overview
-st.subheader("📊 Your Learning Progress")
-
-progress_cols = st.columns(5)
-hsk_levels = ['HSK 1', 'HSK 2', 'HSK 3', 'HSK 4', 'HSK 5']
-hsk_keys = ['hsk1', 'hsk2', 'hsk3', 'hsk4', 'hsk5']
-
-for i, (level, key) in enumerate(zip(hsk_levels, hsk_keys)):
-    with progress_cols[i]:
-        if st.session_state.hsk_completed[key]:
-            st.success(f"✅ {level}")
-        else:
-            st.error(f"🔒 {level}")
-
 # Start Learning Button
 st.subheader("🚀 Choose Your HSK Level")
 
