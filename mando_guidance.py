@@ -11,7 +11,7 @@ if 'hsk_completed' not in st.session_state:
     }
 
 st.title("ಠ_ಠ Mandarin guide to HSK 5 ಠ_ಠ")
-st.markdown("HSK 5级汉语指南")
+st.markdown("<h2 style='font-size: 32px; font-weight: bold;'>HSK 5级汉语指南</h2>", unsafe_allow_html=True)
 st.subheader("Before you start")
 
 intro_text = "First of all, I'm not a language teacher or a language expert. I'm just unemployed, went through depression, and chose to learn English and Mandarin after a year of it. I made this because I think these methods of learning language are worth sharing. I found this method to learn languages to be more effective than most templates or digital tools that would teach you Mandarin. \n\nI realized this method works because of my experiences in Surabaya, where I suddenly could speak Javanese (ngoko) naturally only through exposure. But exposure doesn't have to be natural—you can recreate it. You can use Discord and talk to strangers, watch movies in your target language, and train yourself directly in that language.\n\nSo I applied that insight to English and Mandarin, creating a faster, practical method."
