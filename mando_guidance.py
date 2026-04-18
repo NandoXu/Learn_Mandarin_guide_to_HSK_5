@@ -10,6 +10,14 @@ if 'hsk_completed' not in st.session_state:
         'hsk5': False
     }
 
+# Hide the sidebar and the toggle button
+st.markdown("""
+    <style>
+        [data-testid="stSidebar"] {display: none;}
+        [data-testid="collapsedControl"] {display: none;}
+    </style>
+""", unsafe_allow_html=True)
+
 st.title("ಠ_ಠ Mandarin guide to HSK 5 ಠ_ಠ")
 st.markdown("<h1 style='font-size: 32px; font-weight: bold;'>HSK 5级汉语指南</h1>", unsafe_allow_html=True) 
 st.subheader("Before you start")
@@ -65,4 +73,4 @@ with col2:
         st.button("🔒 HSK 4 - Upper Intermediate\n(Complete HSK 3 first)", disabled=True, use_container_width=True)
 
 st.info("💡 **Level Guide:**\n• **HSK 1-2**: Basic communication\n• **HSK 3-4**: Practical fluency\n• **HSK 5**: Professional/academic level")
-st.info("💡 **级别指南:**\n• **HSK 1-2**: 基础交流\n• **HSK 3-4**: 实用流利\n• **HSK 5**: 专业/学术水平")
+st.info("💡 **级别指南:**\n• **HSK 1-2**: 基础交流\n• **HSK 3-4**: 实用流利\n• **HSK 5**: 专业/学术水平")   
